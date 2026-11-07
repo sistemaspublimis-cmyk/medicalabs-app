@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.vercel/
+.output/
+android/
+Para Play/
+artifacts/
+screenshots/
+*.apk
+*.aab
+*.keystore
+CLAVE-UPLOAD.txt
+keystore.properties
+local.properties
+.DS_Store
+*.log
+.grok/*
+!.grok/app-env.json

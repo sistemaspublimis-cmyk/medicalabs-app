@@ -1,0 +1,333 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: #f3f8fc;
+  --color-ink: #123049;
+  --color-muted: #5a7388;
+  --color-line: #d3e3f0;
+  --color-card: #ffffff;
+  --color-blue: #1a8ad4;
+  --color-blue-deep: #0e5f96;
+  --color-blue-soft: #d7ebf8;
+  --color-banner: #2f9fe0;
+  --color-danger: #b42318;
+  --color-ok: #0e7a45;
+  --color-title: #072844;
+  --color-section: #0b6e4f;
+  --color-kicker: #145a8c;
+  --color-hint: #3e5a70;
+  --color-pause: #e0a106;
+  --color-drawer: #1b2838;
+  --color-drawer-ink: #f4f7fb;
+  --color-drawer-muted: #9eb0c3;
+  --color-drawer-on: #243447;
+  --color-teal: #14c4a4;
+  --color-teal-soft: #e7f8f4;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .med-zoom-compacta {
+    zoom: 0.9;
+  }
+
+  .med-zoom-grande {
+    zoom: 1.12;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.leaflet-container {
+  z-index: 0;
+  font-family: inherit;
+  background: var(--color-blue-soft);
+}
+
+.leaflet-container.is-drawing,
+.leaflet-container.is-drawing .leaflet-interactive {
+  cursor: crosshair;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-content {
+  color: var(--color-ink);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+}
+
+.med-pin.leaflet-div-icon {
+  background: transparent;
+  border: none;
+}
+
+.med-pin-label {
+  position: relative;
+  display: inline-block;
+  max-width: 16rem;
+  overflow: hidden;
+  padding: 4px 8px 4px 22px;
+  transform: translate(-50%, calc(-100% - 8px));
+  border: 2px solid var(--color-blue-deep);
+  border-radius: 999px;
+  background: var(--color-card);
+  color: var(--color-blue-deep);
+  font: 700 12px/1.2 var(--font-sans);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgb(18 48 73 / 18%);
+}
+
+.med-pin-label::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 7px;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 999px;
+  background: var(--color-blue);
+}
+
+.med-pin-label::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  margin-left: -5px;
+  border: 5px solid transparent;
+  border-top-color: var(--color-blue-deep);
+  border-bottom: 0;
+}
+
+.med-pin-gps {
+  border-color: var(--color-ok);
+  color: var(--color-ok);
+}
+
+.med-pin-gps::before {
+  background: var(--color-ok);
+}
+
+.med-pin-gps::after {
+  border-top-color: var(--color-ok);
+}
+
+.med-pin-presale {
+  border-color: #5b3a8c;
+  background: #5b3a8c;
+  color: var(--color-card);
+}
+
+.med-pin-presale::before {
+  background: var(--color-card);
+}
+
+.med-pin-presale::after {
+  border-top-color: #5b3a8c;
+}
+
+.med-pin-driver {
+  border-color: var(--color-banner);
+  background: var(--color-banner);
+  color: var(--color-card);
+}
+
+.med-pin-driver::before {
+  background: var(--color-card);
+}
+
+.med-pin-driver::after {
+  border-top-color: var(--color-banner);
+}
+
+.med-pin-pending {
+  border-color: #8aa0b3;
+  color: #4d6476;
+}
+
+.med-pin-pending::before {
+  background: #8aa0b3;
+}
+
+.med-pin-pending::after {
+  border-top-color: #8aa0b3;
+}
+
+.med-pin-passed {
+  border-color: var(--color-blue-deep);
+  color: var(--color-blue-deep);
+}
+
+.med-pin-passed::before {
+  background: var(--color-blue);
+}
+
+.med-pin-passed::after {
+  border-top-color: var(--color-blue-deep);
+}
+
+.med-pin-done {
+  border-color: var(--color-ok);
+  color: var(--color-ok);
+}
+
+.med-pin-done::before {
+  background: var(--color-ok);
+}
+
+.med-pin-done::after {
+  border-top-color: var(--color-ok);
+}
+
+.med-pin-crew {
+  border-color: var(--pin, var(--color-blue));
+  background: var(--pin, var(--color-blue));
+  color: var(--color-card);
+}
+
+.med-pin-crew::before {
+  background: var(--color-card);
+}
+
+.med-pin-crew::after {
+  border-top-color: var(--pin, var(--color-blue));
+}
+
+.med-pin-label.is-selected {
+  border-color: var(--color-blue-deep);
+  background: var(--color-blue-deep);
+  color: var(--color-card);
+}
+
+.med-pin-label.is-selected::before {
+  background: var(--color-card);
+}
+
+.med-pin-label.is-selected::after {
+  border-top-color: var(--color-blue-deep);
+}
+
+.map-far .med-pin-label {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: var(--color-blue);
+  color: transparent;
+  font-size: 0;
+}
+
+.map-far .med-pin-label::before,
+.map-far .med-pin-label::after {
+  display: none;
+}
+
+.map-far .med-pin-gps {
+  background: var(--color-ok);
+}
+
+.map-far .med-pin-presale {
+  background: #5b3a8c;
+}
+
+.map-far .med-pin-driver {
+  background: var(--color-banner);
+}
+
+.map-far .med-pin-pending {
+  background: #8aa0b3;
+}
+
+.map-far .med-pin-passed {
+  background: var(--color-blue);
+}
+
+.map-far .med-pin-done {
+  background: var(--color-ok);
+}
+
+.map-far .med-pin-crew {
+  background: var(--pin, var(--color-blue));
+}
+
+.map-far .med-pin-label.is-selected {
+  width: 20px;
+  height: 20px;
+  background: var(--color-blue-deep);
+}
+
+.med-popup img {
+  display: block;
+  width: 100%;
+  height: 96px;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.med-popup-title {
+  margin: 0;
+  font-weight: 800;
+  color: var(--color-blue-deep);
+}
+
+.med-popup p {
+  margin: 2px 0 0;
+}
+
+.med-popup-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.med-popup-links a {
+  font-weight: 700;
+  color: var(--color-blue-deep);
+}

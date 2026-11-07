@@ -1,0 +1,47 @@
+Medicalabs — copia para Android y Play Store
+Carpeta: este directorio. La app de prueba en Downloads no se modificó.
+
+Qué cumple esta copia
+- Target pensado para Play: Android 16, API 36.
+- Ubicación solo en primer plano, con la app abierta y a la vista, cada 10 minutos. La comparte la preventa o el repartidor que aceptó. El dueño ve a cada uno. No se inventan puntos de quien no aceptó.
+- La bitácora del dueño guarda cada venta, visita, entrega, registro y ajuste: quién, qué hizo, la hora y la ubicación si hubo una lectura.
+- No pide ubicación en segundo plano. No declares el permiso de ubicación en background en Play Console.
+- Antes del permiso de Android, el repartidor ve un aviso dentro de la app: para qué, cuándo y que puede negarse.
+- Si dice que no, sigue entregando. El dueño no ve el punto de esa unidad.
+- El repartidor ve su propio mapa y puede dejar de compartir.
+- El dueño ve el mapa de las unidades que aceptaron.
+- El mapa de la app usa OpenStreetMap. "Abrir en Google Maps" abre Google Maps con esa coordenada. No hace falta una llave de Maps.
+- Los datos se quedan en el teléfono. No hay servidor de Medicalabs.
+- Borrar datos: Configuración → Borrar datos de este teléfono.
+- Privacidad dentro de la app, en el menú. El mismo texto está en public/privacidad.html para hospedarlo.
+
+Antes de subir a Play Console
+1. Escribe el correo real del responsable en src/lib/med/play.ts (contactEmail). Sin eso, la ficha queda incompleta.
+2. Publica public/privacidad.html en un https público y pega esa URL en Play Console → Política de privacidad.
+3. Sube el archivo AAB, no el APK de prueba. El APK sirve para instalarlo y verlo.
+4. Firma: el keystore de subida queda en android/medicalabs-upload.keystore. La contraseña está en android/CLAVE-UPLOAD.txt. Guárdala. Si la pierdes, no podrás actualizar la app.
+5. El id de paquete es mx.medicalabs.reparto. Si Play dice que está ocupado, cámbialo antes de la primera subida.
+6. Categoría sugerida: Empresas. No es app de salud ni de consejo médico. Público: 18+.
+7. En Seguridad de los datos: la ubicación se consulta en el teléfono y no sale a un servidor tuyo. No la marques como recopilada ni compartida con terceros si sigue siendo solo local. Si más adelante la mandas a un servidor, hay que cambiar la ficha y la privacidad.
+8. Declaración de permisos de ubicación: función principal del reparto, el usuario ve el aviso y puede rechazar, solo mientras usa la app.
+9. Capturas: dueño en el mapa, repartidor con el aviso de ubicación, y la pantalla de privacidad.
+10. Play exige un Android App Bundle firmado. El comando de esta carpeta lo genera.
+
+Generar e instalar
+Abre Generar APK.command en esta carpeta, o desde Terminal:
+
+  cd "~/Desktop/Medicalabs Play"
+  npm run build:apk
+  npx cap sync android
+  cd android && ./gradlew assembleDebug bundleRelease
+
+Copias listas para ver y subir, en la carpeta Para Play:
+  Para Play/Medicalabs-ver.apk      (instálalo en un Android para verlo)
+  Para Play/Medicalabs-play.aab     (este es el que se sube a Play Console)
+  Para Play/icono-play-512.png      (ícono de la ficha, 512 px)
+
+También quedan en:
+  android/app/build/outputs/apk/debug/app-debug.apk
+  android/app/build/outputs/bundle/release/app-release.aab
+
+Para verla en un teléfono Android: activa depuración USB o instala el APK. En esta Mac no hay emulador.

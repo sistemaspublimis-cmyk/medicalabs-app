@@ -1,0 +1,18 @@
+# Sitio estático de la app de reparto. La página pública sigue en el servicio medicalabs.
+services:
+  - type: web
+    name: medicalabs-app
+    runtime: static
+    buildCommand: npm ci --omit=dev && npm run build:web
+    staticPublishPath: dist/client
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: VITE_AUTH_ENABLED
+        value: "false"
+      - key: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD
+        value: "1"
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
